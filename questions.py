@@ -16,6 +16,9 @@ attempts = 6
 
 print("¡Bienvenido al Ahorcado!")
 print()
+
+puntos = 6
+
 while attempts > 0:
     # Mostrar progreso: letras adivinadas y guiones para las que faltan
     progress = ""
@@ -36,7 +39,8 @@ while attempts > 0:
     letter = input("Ingresá una letra: ")
     
     if len(letter) != 1 or (letter < 'a' or letter > 'z'):
-        print('Entrada no valida')
+    # Verifico el caracter, si no es valido imprimo mensaje y continúo el juego en la siguiente iteración.
+        print('Entrada no válida')
     else:
         if letter in guessed:
             print("Ya usaste esa letra.")
@@ -46,7 +50,11 @@ while attempts > 0:
         else:
             guessed.append(letter)
             attempts -= 1
+            puntos -= 1
             print("Esa letra no está en la palabra.")
     print()
 else:
     print(f"¡Perdiste! La palabra era: {word}")
+    puntos = 0
+
+print (f'Puntaje: {puntos}')
