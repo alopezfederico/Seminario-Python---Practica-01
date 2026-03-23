@@ -1,23 +1,74 @@
 import random
 
-words = [
-"python",
-"programa",
-"variable",
-"funcion",
-"bucle",
-"cadena",
-"entero",
-"lista",
-]
-word = random.choice(words)
+categorias = {
+'Programación':["python",
+    "programa",
+    "variable",
+    "funcion",
+    "bucle",
+    "cadena",
+    "entero",
+    "lista"
+],
+'Marcas':[
+    'Nike',
+    'Adidas',
+    'Amazon',
+    'Google',
+    'Microsoft',
+    'Samsung',
+    'Oracle'
+],
+'Equipos de futbol':[
+    'Boca',
+    'Estudiantes',
+    'River',
+    'Gimnasia',
+    'Independiente',
+    'Racing',
+    'Barcelona'
+    ],
+'Colores':[
+    'Amarillo',
+    'Azul',
+    'Violeta',
+    'Naranja',
+    'Verde',
+    'Celeste',
+    ]
+}
+
+def mostrar_categorias(categorias):
+    print("Categorías disponibles:")
+    opciones = list(categorias.keys())
+    for i in range(len(opciones)):
+        print(i + 1, "-", opciones[i])
+    return opciones
+
+def elegir_categoria(categorias):
+    opciones = mostrar_categorias(categorias)
+    seleccion = input("Elegí una categoría: ")
+
+    while not seleccion.isdigit() or int(seleccion) < 1 or int(seleccion) > len(opciones):
+        seleccion = input("Selección inválida. Elegí una opción válida: ")
+
+    return opciones[int(seleccion) - 1]
+
+def letra_valida(letter):
+    return len(letter) == 1 and 'a' <= letter <= 'z'
+
+
 guessed = []
 attempts = 6
+puntos = 6
 
 print("¡Bienvenido al Ahorcado!")
 print()
 
-puntos = 6
+
+seleccion = elegir_categoria(categorias)
+
+word = random.choice(categorias[seleccion])
 
 while attempts > 0:
     # Mostrar progreso: letras adivinadas y guiones para las que faltan
