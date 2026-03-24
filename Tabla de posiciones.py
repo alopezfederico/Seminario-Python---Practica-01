@@ -1,6 +1,7 @@
 equipos = {}
 
 def mostrar_menu():
+    # Imprime en pantalla las opciones del menú disponibles
     print()
     print("1 - Agregar equipo")
     print("2 - Registrar resultado")
@@ -10,15 +11,17 @@ def mostrar_menu():
     print()
 
 def agregar_equipo(equipos):
+    # Agrega equipo al diccionario en caso de no existir
     nombre = input("Ingresá el nombre del equipo: ").strip()
 
     if nombre in equipos:
         print("Ese equipo ya existe.")
     else:
         equipos[nombre] = 0
-        print("Equipo agregado correctamente.")
+        print(f"Equipo {nombre} agregado correctamente.")
 
 def marcador_valido(goles):
+    # Valida si el formato del marcador ingresado es correcto
     partes = goles.split("-")
 
     if len(partes) != 2:
@@ -33,6 +36,8 @@ def marcador_valido(goles):
     return True
 
 def registrar_resultado(equipos):
+    # Verifica si los equipos ingresados existen y si se ingresó dos veces el mismo.
+    # En caso de haber ingresado los nombres correctamente, se suman puntos de manera correspondiente.
     local = input("Ingresá el equipo local: ").strip()
     visitante = input("Ingresá el equipo visitante: ").strip()
 
@@ -65,6 +70,7 @@ def registrar_resultado(equipos):
     print("Resultado registrado correctamente.")
 
 def mostrar_tabla(equipos):
+    # Imprime tabla de posiciones siempre y cuando haya equipos agregados.
     if len(equipos) == 0:
         print("No hay equipos cargados.")
         return
@@ -81,6 +87,7 @@ def mostrar_tabla(equipos):
         posicion += 1
 
 def eliminar_equipo(equipos):
+    # AL ingresar un equipo, si este equipo existe, se elimina.
     nombre = input("Ingresá el nombre del equipo a eliminar: ").strip()
 
     if nombre in equipos:
